@@ -31,6 +31,14 @@
     "daicat"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roilkl/dsh-daicat-pet.git"
+  },
+  "homepage": "https://github.com/Roilkl/dsh-daicat-pet#readme",
+  "bugs": {
+    "url": "https://github.com/Roilkl/dsh-daicat-pet/issues"
+  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"

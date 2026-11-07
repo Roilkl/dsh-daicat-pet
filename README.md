@@ -95,7 +95,7 @@ dsh-daicat-pet/
 │   └── client.js             # 页面：绘制、动画、交互、气泡
 ├── assets/daicat/
 │   ├── anim.json              # 状态与帧时长
-│   ├── spritesheet.webp      # 图集（发布前须确认授权）
+│   ├── spritesheet.webp      # 第三方图集（不受 MIT 许可覆盖）
 │   └── lines.json             # 点击台词
 ├── locale/                   # 中文与英文描述
 ├── README.md
@@ -114,4 +114,4 @@ dsh-daicat-pet/
 
 呆猫动图素材由小黑盒用户 **「van家11451419」** 制作的「呆猫表情包合集」提供。交互与每轮气泡的设计思路参考了 [DeepSeek Balance Whale Widget](https://github.com/MeteorNOX/DeepSeek-Balance-Whale-Widget)；桌宠图集与状态组织也参考了 **dsh-desktop-pet** 的项目架构。本插件仅展示 token 数量，没有移植小鲸鱼的余额、计价或配置面板。感谢这些作品与项目的作者。
 
-本项目**代码**按 [MIT License](LICENSE) 提供。呆猫图集及其原始 GIF 属于第三方美术，**不属于 MIT 授权范围**；署名并不替代公开再分发许可。公开发布完整包前，仍应核实权利人允许再分发，或换成自己创作、可公开发布的图像。
+本项目**代码**按 [MIT License](LICENSE) 提供。呆猫图集及其原始 GIF 属于第三方美术，**不属于 MIT 授权范围**；发布者称已获公开再分发许可，但未在仓库提供可核对的授权原文。署名并不授予下游用户二次修改或再分发图集的权利，请向原作者核实具体许可范围。
