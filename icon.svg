@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="呆猫">
+  <path d="M14 26 L12 8 L28 18 Z" fill="#f2a65a" stroke="#8a5a2b" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M50 26 L52 8 L36 18 Z" fill="#f2a65a" stroke="#8a5a2b" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="32" cy="36" r="20" fill="#f7c98b" stroke="#8a5a2b" stroke-width="2"/>
+  <circle cx="24" cy="33" r="2.6" fill="#2b2b2b"/>
+  <circle cx="40" cy="33" r="2.6" fill="#2b2b2b"/>
+  <path d="M29 42 q3 3 6 0" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/>
+  <path d="M6 38 L18 38 M6 44 L18 43 M58 38 L46 38 M58 44 L46 43" stroke="#8a5a2b" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Daicat Pet",
+    "description": "Draws 呆猫 in the Harness Web UI overlay and switches her pose with the session state (idle / running / waiting / failed / review)."
+  }
+}

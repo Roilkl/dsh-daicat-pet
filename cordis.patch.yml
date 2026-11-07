@@ -1,0 +1,20 @@
+# daicat-pet bundle layer.
+#
+# Inserts the host half as one plugin row; the host half serves the pet's
+# anim.json + spritesheet.webp to the client half drawn in the Web UI.
+#
+# The pet assets ship inside this package (assets/daicat), so a plain install
+# just works. To point at your own pet directory instead (for example while
+# rebuilding the atlas with daicat_build.py), add `petDir` from your profile
+# patch layer rather than editing this file, so upgrades do not clobber it:
+#
+#   - id: daicat-pet
+#     name: dsh-daicat-pet
+#     config:
+#       petDir: C:/Users/me/.dsh/desktop-pet/pets/daicat
+- insert:
+    - id: daicat-pet
+      name: dsh-daicat-pet
+      config:
+        petId: daicat
+        size: 192
