@@ -1,5 +1,8 @@
 # Daicat Desktop Pet · dsh-daicat-pet
 
+[![npm version](https://img.shields.io/npm/v/dsh-daicat-pet.svg)](https://www.npmjs.com/package/dsh-daicat-pet)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 English | [中文](README.zh.md)
 
 A cat companion for the DeepSeek Harness chat UI. It follows the session state and switches poses, says an editable line when you click it, and reports the **token usage** of each finished turn. It can be dragged (with a squish), flipped, and resized — without taking up a separate window.
@@ -25,7 +28,13 @@ A cat companion for the DeepSeek Harness chat UI. It follows the session state a
 
 ### DSH Web
 
-Install from this repository inside the environment running DSH Web:
+From npm — the package is published as [`dsh-daicat-pet`](https://www.npmjs.com/package/dsh-daicat-pet):
+
+```powershell
+dsh plugin --profile web add dsh-daicat-pet
+```
+
+From this repository (the same release, if you prefer to pin the git source):
 
 ```powershell
 dsh plugin --profile web add github:Roilkl/dsh-daicat-pet
@@ -37,11 +46,11 @@ Or from a complete local copy of the source (`package.json`, `lib/`, `assets/` a
 dsh plugin --profile web add link:C:\path\to\dsh-daicat-pet
 ```
 
-Restart `dsh web` afterwards, then reload the page. Use only one of the two methods — do not mix them for the same package name.
+Restart `dsh web` afterwards, then reload the page. Use only one of these methods — do not mix them for the same package name.
 
 ### Official desktop client
 
-The desktop app uses the `desktop` profile, **not** the `web` profile above, and `dsh plugin --profile desktop` is rejected by the CLI. Install the same GitHub repository or a complete local package into the current profile through the app's own plugin manager. If nothing appears after the first install, quit the client completely (including the tray) and reopen it. Do not copy or delete desktop-profile dependencies by hand.
+The desktop app uses the `desktop` profile, **not** the `web` profile above, and `dsh plugin --profile desktop` is rejected by the CLI. Install the same npm package, GitHub repository or a complete local package into the current profile through the app's own plugin manager. If nothing appears after the first install, quit the client completely (including the tray) and reopen it. Do not copy or delete desktop-profile dependencies by hand.
 
 Requirements: Node.js `>=22.19.0`, DSH `>=0.2.0-rc.1 <0.3.0-0`. The pet is drawn into the `shell.overlay` slot.
 

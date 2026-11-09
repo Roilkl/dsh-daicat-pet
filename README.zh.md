@@ -1,5 +1,7 @@
 # 呆猫桌宠 · dsh-daicat-pet
 
+[![npm version](https://img.shields.io/npm/v/dsh-daicat-pet.svg)](https://www.npmjs.com/package/dsh-daicat-pet)
+
 [English](README.md) | 中文
 
 在 DeepSeek Harness 的对话界面里养一只呆猫：它会跟随会话状态变换动作；点击说一句预设台词，每轮回复结束显示本轮 **token 用量**。可以拖动、左右翻转和缩放，不占用独立窗口。
@@ -25,7 +27,13 @@
 
 ### DSH Web
 
-从本仓库在运行 DSH Web 的环境中安装：
+已发布到 npm：[`dsh-daicat-pet`](https://www.npmjs.com/package/dsh-daicat-pet)，在运行 DSH Web 的环境中执行：
+
+```powershell
+dsh plugin --profile web add dsh-daicat-pet
+```
+
+也可以从本仓库安装（与 npm 上为同一份代码，适合锁定 git 来源）：
 
 ```powershell
 dsh plugin --profile web add github:Roilkl/dsh-daicat-pet
@@ -37,11 +45,11 @@ dsh plugin --profile web add github:Roilkl/dsh-daicat-pet
 dsh plugin --profile web add link:C:\path\to\dsh-daicat-pet
 ```
 
-完成后重启 `dsh web`，再刷新页面。两种安装方式二选一，不要对同一包名混装。
+完成后重启 `dsh web`，再刷新页面。三种方式选其一，不要对同一包名混装。
 
 ### 官方桌面客户端
 
-桌面客户端使用 `desktop` profile，**不是**上面命令的 `web` profile；`dsh plugin --profile desktop` 也不受 CLI 支持。请在桌面客户端中通过其内置插件管理能力，将同一个 GitHub 仓库或完整本地包安装到当前 profile。首次安装后如未出现，完全退出客户端（包括托盘）并重开。不要为了安装而手动拷贝或删除桌面 profile 的依赖。
+桌面客户端使用 `desktop` profile，**不是**上面命令的 `web` profile；`dsh plugin --profile desktop` 也不受 CLI 支持。请在桌面客户端中通过其内置插件管理能力，将同一个 npm 包、GitHub 仓库或完整本地包安装到当前 profile。首次安装后如未出现，完全退出客户端（包括托盘）并重开。不要为了安装而手动拷贝或删除桌面 profile 的依赖。
 
 运行环境：Node.js `>=22.19.0`，DSH `>=0.2.0-rc.1 <0.3.0-0`；客户端绘制在 `shell.overlay` 插槽中。
 
