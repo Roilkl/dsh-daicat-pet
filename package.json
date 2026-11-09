@@ -32,6 +32,7 @@
     "daicat"
   ],
   "license": "MIT",
+  "author": "Roilkl",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Roilkl/dsh-daicat-pet.git"
