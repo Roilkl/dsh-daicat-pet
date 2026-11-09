@@ -1,7 +1,7 @@
 {
   "name": "dsh-daicat-pet",
   "version": "0.1.0",
-  "description": "呆猫桌面宠物：在 DeepSeek Harness 网页里陪伴工作，能拖动、点击说话，并在每轮对话结束后报告本轮 token 消耗。图集列数、每状态帧数、循环次数全部由数据文件决定。",
+  "description": "Daicat desktop pet for the DeepSeek Harness web GUI: an animated cat that reacts to session state, says editable lines on click, and reports per-turn token usage. Draggable, flippable, resizable; atlas layout and frame counts come from a data file.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -18,6 +18,7 @@
     "icon.svg",
     "cordis.patch.yml",
     "README.md",
+    "README.zh.md",
     "LICENSE"
   ],
   "icon": "icon.svg",

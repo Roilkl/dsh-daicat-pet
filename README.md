@@ -1,60 +1,64 @@
-# 呆猫桌宠 · dsh-daicat-pet
+# Daicat Desktop Pet · dsh-daicat-pet
 
-在 DeepSeek Harness 的对话界面里养一只呆猫：它会跟随会话状态变换动作；点击说一句预设台词，每轮回复结束显示本轮 **token 用量**。可以拖动、左右翻转和缩放，不占用独立窗口。
+English | [中文](README.zh.md)
 
-> **素材许可说明：** 图集由第三方 GIF 制成。发布者表示已获公开再分发许可；但本仓库尚未附授权原文，使用或二次分发图集前请向原作者核实具体授权范围。代码的 MIT 许可证**不覆盖图集**。
+A cat companion for the DeepSeek Harness chat UI. It follows the session state and switches poses, says an editable line when you click it, and reports the **token usage** of each finished turn. It can be dragged (with a squish), flipped, and resized — without taking up a separate window.
 
-## 功能一览
+▶ **[Watch the demo video](media/demo.mp4)** (1.6 MB, screen recording)
 
-| 操作 / 时机 | 效果 |
+> **Artwork notice:** the spritesheet is derived from third-party GIFs. The publisher states public redistribution permission was obtained, but the permission text is not included in this repository — verify the exact scope with the original author before reusing or redistributing the artwork. The MIT license **does not cover the artwork**.
+
+## Features
+
+| Action / timing | Effect |
 | --- | --- |
-| 点击呆猫 | 依次显示 `lines.json` 中的台词；再点显示下一句 |
-| 拖动 | 跟手移动，按下时轻微压扁，松开回弹；位置保存在本机浏览器 |
-| 移到页面左半侧 | 呆猫水平翻转；移回右半侧则恢复 |
-| `Ctrl` + 滚轮 | 缩放，宽度范围 48–640 px；尺寸保存在本机浏览器 |
-| 每轮回复结束 | 显示本轮 token 总数及输入、输出、缓存读取/写入四项用量，并播放完成动作 |
-| 会话状态变化 | 在空闲、运行、等待交互、失败、完成待看等姿态之间切换 |
+| Click the cat | Shows the next line from `lines.json`, cycling through the list |
+| Drag | Follows the pointer, squishes slightly on press and springs back on release; the position is remembered in the browser |
+| Move to the left half of the page | The cat flips horizontally; it flips back on the right half |
+| `Ctrl` + mouse wheel | Resizes between 48 and 640 px wide; the size is remembered in the browser |
+| End of each turn | Shows the turn's total tokens plus input, output, cache read and cache write, and plays the finished pose |
+| Session state changes | Switches between idle, running, waiting for input, failed and ready-to-review poses |
 
-> 这里显示的是 **token 数量，不是人民币或美元账单**。如果宿主没有提供 `tokenUsage` 投影，其他桌宠功能仍可用，但不会显示本轮用量。
+> These are **token counts, not money**. If the host exposes no `tokenUsage` projection, every other feature still works and only the per-turn bubble is skipped.
 
-## 安装
+## Install
 
 ### DSH Web
 
-从本仓库在运行 DSH Web 的环境中安装：
+Install from this repository inside the environment running DSH Web:
 
 ```powershell
 dsh plugin --profile web add github:Roilkl/dsh-daicat-pet
 ```
 
-或者从已下载的完整源码目录安装（目录内应有 `package.json`、`lib/`、`assets/`、`cordis.patch.yml`）：
+Or from a complete local copy of the source (`package.json`, `lib/`, `assets/` and `cordis.patch.yml` present):
 
 ```powershell
 dsh plugin --profile web add link:C:\path\to\dsh-daicat-pet
 ```
 
-完成后重启 `dsh web`，再刷新页面。两种安装方式二选一，不要对同一包名混装。**目前没有发布 npm 包**，请勿使用 `dsh plugin --profile web add dsh-daicat-pet`。
+Restart `dsh web` afterwards, then reload the page. Use only one of the two methods — do not mix them for the same package name.
 
-### 官方桌面客户端
+### Official desktop client
 
-桌面客户端使用 `desktop` profile，**不是**上面命令的 `web` profile；`dsh plugin --profile desktop` 也不受 CLI 支持。请在桌面客户端中通过其内置插件管理能力，将同一个 GitHub 仓库或完整本地包安装到当前 profile。首次安装后如未出现，完全退出客户端（包括托盘）并重开。不要为了安装而手动拷贝或删除桌面 profile 的依赖。
+The desktop app uses the `desktop` profile, **not** the `web` profile above, and `dsh plugin --profile desktop` is rejected by the CLI. Install the same GitHub repository or a complete local package into the current profile through the app's own plugin manager. If nothing appears after the first install, quit the client completely (including the tray) and reopen it. Do not copy or delete desktop-profile dependencies by hand.
 
-运行环境：Node.js `>=22.19.0`，DSH `>=0.2.0-rc.1 <0.3.0-0`；客户端绘制在 `shell.overlay` 插槽中。
+Requirements: Node.js `>=22.19.0`, DSH `>=0.2.0-rc.1 <0.3.0-0`. The pet is drawn into the `shell.overlay` slot.
 
-## 修改台词与形象
+## Customize lines and looks
 
-默认台词位于 [`assets/daicat/lines.json`](assets/daicat/lines.json)，格式为 UTF-8 JSON 字符串数组：
+The default lines live in [`assets/daicat/lines.json`](assets/daicat/lines.json), a UTF-8 JSON array of strings:
 
 ```json
 [
-  "喵？在写代码吗",
-  "这一轮跑完啦，看看我"
+  "Writing code again?",
+  "That turn is done — look at me"
 ]
 ```
 
-保存后刷新页面即可重新读取台词，**无需重启宿主**。如果单独使用自己的素材目录，则修改该目录下的 `lines.json`；文件缺失或格式错误时客户端使用内置的保底台词。短句更适合显示在小气泡中。
+Reload the page after saving and the new lines are picked up — **no host restart needed**. When a separate pet directory is used, edit that directory's `lines.json` instead; if the file is missing or malformed, the client falls back to built-in lines. Short sentences fit the small bubble better.
 
-默认图集和帧表分别位于 `assets/daicat/spritesheet.webp`、`assets/daicat/anim.json`。想换自己的角色，建议在 profile 的 `cordis.patch.yml` 里按 `id` 覆盖 `petDir`，不要编辑已安装包：
+The default atlas and frame table are [`assets/daicat/spritesheet.webp`](assets/daicat/spritesheet.webp) and [`assets/daicat/anim.json`](assets/daicat/anim.json). To use your own character, override `petDir` by `id` in the profile's `cordis.patch.yml` rather than editing the installed package:
 
 ```yaml
 - id: daicat-pet
@@ -65,11 +69,11 @@ dsh plugin --profile web add link:C:\path\to\dsh-daicat-pet
     petDir: C:/path/to/my-pet
 ```
 
-`petDir` 应包含 `anim.json` 和 `spritesheet.webp`，`lines.json` 可选。配置优先级：显式 `petDir` → 包内 `assets/daicat` → `$DSH_HOME/desktop-pet/pets/daicat`（默认为用户主目录下的 `.dsh`）。改 profile 配置或宿主代码后需重启；只改帧表、图集或台词，可刷新页面重新读取。profile 层覆盖 config 时应一起写上 `petId` 和 `size`，避免丢失原默认值。
+`petDir` must contain `anim.json` and `spritesheet.webp`; `lines.json` is optional. Resolution order: explicit `petDir` → bundled `assets/daicat` → `$DSH_HOME/desktop-pet/pets/daicat` (where `$DSH_HOME` defaults to `.dsh` in your home directory). Editing the profile config or host code needs a restart; changing only the frame table, atlas or lines needs a page reload. When overriding `config` at the profile layer, repeat `petId` and `size` so the defaults are not lost.
 
-### 图集数据格式
+### Atlas format
 
-精灵图透明背景，按行放状态；一个格子 **192 × 208** 像素。当前内置图集 **66 列 × 9 行（12672 × 1872）**，但插件由 `anim.json` 读取行列与各动作帧数，不要求 PetDex 的固定 8 列。
+The spritesheet has a transparent background and one state per row; a cell is **192 × 208** px. The bundled atlas is **66 columns × 9 rows (12672 × 1872)**, but the plugin reads rows, columns and per-state frame counts from `anim.json` — it does not require PetDex's fixed 8 columns.
 
 ```json
 {
@@ -81,37 +85,39 @@ dsh plugin --profile web add link:C:\path\to\dsh-daicat-pet
 }
 ```
 
-`rows` 中的顺序就是图集行序；`frames` 是该状态实际使用的列数；`durations` 是逐帧时长（毫秒）。如果 `durations` 长于 `frames`，播放列按帧序号对 `frames` 取模，因此重复一段时长列表即可循环播放。内置状态名：`idle`、`running-right`、`running-left`、`waving`、`jumping`、`failed`、`waiting`、`running`、`review`。不要把上面的**格式示意**当作内置图集的完整帧表。
+`rows` order is the atlas row order; `frames` is how many columns the state actually uses; `durations` are the per-frame durations in milliseconds. If `durations` is longer than `frames`, the played column is the frame index modulo `frames` — so repeating a run of durations loops the animation. Built-in state names: `idle`, `running-right`, `running-left`, `waving`, `jumping`, `failed`, `waiting`, `running`, `review`. The snippet above is a **format illustration**, not the full frame table of the bundled atlas.
 
-## 项目结构
+## Project structure
 
 ```text
 dsh-daicat-pet/
-├── package.json              # 包信息与 DSH bundle/client 声明
-├── cordis.patch.yml          # 宿主插件挂载配置
-├── icon.svg                  # 插件图标
+├── package.json              # package info and DSH bundle/client declarations
+├── cordis.patch.yml          # host plugin mount config
+├── icon.svg                  # plugin icon
 ├── lib/
-│   ├── index.js              # 宿主：资源路由、每轮 token 统计
-│   └── client.js             # 页面：绘制、动画、交互、气泡
+│   ├── index.js              # host: asset routes, per-turn token accounting
+│   └── client.js             # page: drawing, animation, interaction, bubbles
 ├── assets/daicat/
-│   ├── anim.json              # 状态与帧时长
-│   ├── spritesheet.webp      # 第三方图集（不受 MIT 许可覆盖）
-│   └── lines.json             # 点击台词
-├── locale/                   # 中文与英文描述
+│   ├── anim.json              # states and frame durations
+│   ├── spritesheet.webp      # third-party atlas (not covered by the MIT license)
+│   └── lines.json             # click lines
+├── media/demo.mp4            # demo recording
+├── locale/                   # Chinese and English descriptions
 ├── README.md
-└── LICENSE                   # 仅限代码，不覆盖第三方美术
+├── README.zh.md
+└── LICENSE                   # code only, does not cover the third-party artwork
 ```
 
-## 排查
+## Troubleshooting
 
-- **装完没有出现**：确认装到了正在使用的 profile；重启宿主后刷新界面。桌面端不能用 `--profile web` 命令代替安装。
-- **有猫但没动作**：检查所选 `petDir` 下的图集尺寸、`anim.json` 的行序与帧数是否匹配；不要把第三方 GIF 直接改名为 WebP。
-- **没有台词**：检查 `lines.json` 是否为合法 JSON 字符串数组，刷新页面。
-- **不显示本轮用量**：一轮对话须真正结束；需要 DSH 的 `sessionProjections` / `tokenUsage` 服务提供数据。这里不读取 API 余额、不计算金钱价格。
-- **调试接口**：仅供本机使用，`/dsh-daicat-pet/anim.json`、`/atlas.webp`、`/api/lines`、`/api/turn`、`/api/state`；`/api/pose?set=waiting&ms=1000` 可暂时强制姿态。`/api/state` 会返回本机素材绝对路径，勿公开贴出未经脱敏的响应。
+- **Nothing appears after install**: make sure the package went into the profile you are actually running, restart the host, then reload the UI. The desktop client cannot be installed for with the `--profile web` command.
+- **The cat shows but does not animate**: check the atlas dimensions and that `anim.json` row order and frame counts match the sheet. Do not simply rename a GIF to WebP.
+- **No lines**: check that `lines.json` is a valid JSON array of strings, then reload the page.
+- **No per-turn usage**: the turn must actually finish, and DSH's `sessionProjections` / `tokenUsage` service must provide data. This plugin never reads API balance and never computes money.
+- **Debug endpoints**: local only — `/dsh-daicat-pet/anim.json`, `/atlas.webp`, `/api/lines`, `/api/turn`, `/api/state`; `/api/pose?set=waiting&ms=1000` forces a pose temporarily. `/api/state` returns local absolute paths, so do not paste an unsanitized response in public.
 
-## 致谢与许可
+## Credits and license
 
-呆猫动图素材由小黑盒用户 **「van家11451419」** 制作的「呆猫表情包合集」提供。交互与每轮气泡的设计思路参考了 [DeepSeek Balance Whale Widget](https://github.com/MeteorNOX/DeepSeek-Balance-Whale-Widget)；桌宠图集与状态组织也参考了 **dsh-desktop-pet** 的项目架构。本插件仅展示 token 数量，没有移植小鲸鱼的余额、计价或配置面板。感谢这些作品与项目的作者。
+The cat animation artwork comes from the "呆猫表情包合集" (daicat sticker collection) made by the Xiaoheihe user **「van家11451419」**. The interaction design and the per-turn bubble are inspired by [DeepSeek Balance Whale Widget](https://github.com/MeteorNOX/DeepSeek-Balance-Whale-Widget); the pet atlas and state organisation also reference **dsh-desktop-pet**. This plugin only shows token counts and does not port the whale's balance, pricing or settings panel. Thanks to all of them.
 
-本项目**代码**按 [MIT License](LICENSE) 提供。呆猫图集及其原始 GIF 属于第三方美术，**不属于 MIT 授权范围**；发布者称已获公开再分发许可，但未在仓库提供可核对的授权原文。署名并不授予下游用户二次修改或再分发图集的权利，请向原作者核实具体许可范围。
+The **code** is licensed under the [MIT License](LICENSE). The daicat atlas and the original GIFs are third-party artwork and are **not** covered by MIT; the publisher states public redistribution permission was obtained, but no verifiable permission text is provided in this repository. Attribution does not grant downstream rights to modify or redistribute the artwork — verify the actual scope with the original author.
